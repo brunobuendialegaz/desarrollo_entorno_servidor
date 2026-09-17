@@ -1,3 +1,9 @@
+<?php
+
+require_once "funciones.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,7 +56,7 @@
         <article class="producto">
             <h2>Ratón gaming</h2>
             <p>Categoría: Periféricos</p>
-            <p class="precio">39,90 €</p>
+            <p class="precio"><?php echo formatearPrecio(5000) ?></p>
             <p>Stock: 3</p>
             <p>
                 Estado:
