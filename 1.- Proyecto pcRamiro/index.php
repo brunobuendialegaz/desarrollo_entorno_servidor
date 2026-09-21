@@ -54,6 +54,10 @@ require_once "datos.php";
                 Stock:
                 <?= $producto["stock"] ?>
             </p>
+            <p class="estado <?=  obtenerClaseEstado($producto["stock"]) ?>">
+                estado:
+                <?= obtenerEstadoStock($producto["stock"]); ?>
+            </p>
 
         </article>
         <?php } ?>
