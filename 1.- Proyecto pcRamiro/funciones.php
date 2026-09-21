@@ -43,4 +43,15 @@ function escapar(string $texto): string
 {
     return htmlspecialchars($texto, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 }
+
+function buscarProductoPorID(array $productos, int $id): ?array
+{
+    foreach ($productos as $producto){
+        if ($producto["id"] === $id){
+            return $producto;
+        }
+    }
+    return null;
+}
+
 ?>

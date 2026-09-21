@@ -1,3 +1,11 @@
+<?php 
+    require_once "datos.php";
+    require_once "funciones.php";
+
+    $resultados = [];
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
