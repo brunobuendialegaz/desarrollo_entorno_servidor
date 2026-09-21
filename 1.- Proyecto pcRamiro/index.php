@@ -1,6 +1,7 @@
 <?php
 
 require_once "funciones.php";
+require_once "datos.php";
 
 ?>
 
@@ -37,69 +38,27 @@ require_once "funciones.php";
 
     <section class="grid-productos">
 
+        <?php 
+            foreach ($productos as $producto){
+        ?>
         <article class="producto">
-            <h2>Teclado mecánico</h2>
-            <p>Categoría: Periféricos</p>
-            <p class="precio">79,90 €</p>
-            <p>Stock: 7</p>
-            <p>
-                Estado:
-                <span class="estado disponible">Disponible</span>
+            <h2>
+                <?=  $producto["nombre"] ?>
+            </h2>
+            <p>Categoria: <?=  $producto["categoria"] ?></p>
+            
+            <p class="precio">
+                <?=  formatearPrecio($producto["precio"]) ?>
             </p>
-            <div class="acciones">
-                <a class="boton" href="producto.php">
-                    Ver producto
-                </a>
-            </div>
-        </article>
+            <p>
+                Stock:
+                <?= $producto["stock"] ?>
+            </p>
 
-        <article class="producto">
-            <h2>Ratón gaming</h2>
-            <p>Categoría: Periféricos</p>
-            <p class="precio"><?php echo formatearPrecio(5000) ?></p>
-            <p>Stock: 3</p>
-            <p>
-                Estado:
-                <span class="estado aviso">Últimas unidades</span>
-            </p>
-            <div class="acciones">
-                <a class="boton" href="producto.php">
-                    Ver producto
-                </a>
-            </div>
         </article>
-
-        <article class="producto">
-            <h2>Monitor 27 pulgadas</h2>
-            <p>Categoría: Monitores</p>
-            <p class="precio">219,90 €</p>
-            <p>Stock: 0</p>
-            <p>
-                Estado:
-                <span class="estado agotado">Agotado</span>
-            </p>
-            <div class="acciones">
-                <a class="boton" href="producto.php">
-                    Ver producto
-                </a>
-            </div>
-        </article>
-
-        <article class="producto">
-            <h2>Auriculares USB</h2>
-            <p>Categoría: Audio</p>
-            <p class="precio">49,90 €</p>
-            <p>Stock: 12</p>
-            <p>
-                Estado:
-                <span class="estado disponible">Disponible</span>
-            </p>
-            <div class="acciones">
-                <a class="boton" href="producto.php">
-                    Ver producto
-                </a>
-            </div>
-        </article>
+        <?php } ?>
+            
+        
 
     </section>
 
