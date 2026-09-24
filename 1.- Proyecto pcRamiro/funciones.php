@@ -54,4 +54,40 @@ function buscarProductoPorID(array $productos, int $id): ?array
     return null;
 }
 
+function normalizarTexto(string $texto): string 
+{
+    $texto = trim($texto);
+    if (function_exists("mb_strtolower")) {
+        return mb_strtolower($texto, "UTF-8"(strin));
+    }
+    return strtolower($texto);
+}
+
+function buscarProductos(array $productos, string $busqueda): array 
+{
+    
+    $resultados = [];
+    $busqueda = normalizarTexto($busqueda);
+    
+    if ($busqueda === "") {
+        return $resiultados;
+    }
+
+    foreach ($producto as $producto) {
+        $nombre = normalizarTexto($producto["nombre"]);
+
+        if (str_contains($nombre, $busqueda)) {
+            $resultados[] = $producto;
+        }
+    }
+
+    return $resultados;
+
+}
+
+function leerCadena(array $origen, string $clave): string
+{
+
+}
+
 ?>
