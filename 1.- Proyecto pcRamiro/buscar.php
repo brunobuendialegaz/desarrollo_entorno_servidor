@@ -76,13 +76,13 @@
 
     </section>
 
-    <?php if ($resulados !== []): ?>
+    <?php if ($resultados !== []): ?>
         <section class="grid-productos">
             <?php foreach ($resultados as $resultado): ?>
                 <article class="producto">
                     <h3><?= escapar($resultado["nombre"]) ?></h3>
-                    <p><?= escapar($resultado["descripcion"]) ?></p>
-                    <p>Precio: <?= formatearPrecio($resultado["precio"]) ?> €</p>
+                    <p><?= escapar($resultado["descripcion"] ?? "") ?></p>
+                    <p>Precio: <?= formatearPrecio($resultado["precio"]) ?></p>
                 </article>
             <?php endforeach; ?>
         </section>
@@ -90,4 +90,4 @@
 </main>
 
 </body>
-</html>
+</htm

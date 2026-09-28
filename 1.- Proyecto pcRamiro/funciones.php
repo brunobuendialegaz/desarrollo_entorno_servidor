@@ -58,22 +58,21 @@ function normalizarTexto(string $texto): string
 {
     $texto = trim($texto);
     if (function_exists("mb_strtolower")) {
-        return mb_strtolower($texto, "UTF-8"(strin));
+        return mb_strtolower($texto, "UTF-8");
     }
     return strtolower($texto);
 }
 
-function buscarProductos(array $productos, string $busqueda): array 
+function buscarProductos(array $productos, string $busqueda): array
 {
-    
     $resultados = [];
     $busqueda = normalizarTexto($busqueda);
-    
+
     if ($busqueda === "") {
-        return $resiultados;
+        return $resultados;
     }
 
-    foreach ($producto as $producto) {
+    foreach ($productos as $producto) {
         $nombre = normalizarTexto($producto["nombre"]);
 
         if (str_contains($nombre, $busqueda)) {
@@ -82,7 +81,6 @@ function buscarProductos(array $productos, string $busqueda): array
     }
 
     return $resultados;
-
 }
 
 function leerCadena(array $origen, string $clave): string
