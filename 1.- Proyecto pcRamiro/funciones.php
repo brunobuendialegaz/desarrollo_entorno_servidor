@@ -87,7 +87,12 @@ function buscarProductos(array $productos, string $busqueda): array
 
 function leerCadena(array $origen, string $clave): string
 {
+    $valor = $origen[$clave] ?? "";
 
+    if (!is_string($valor)) {
+        return "";
+    }
+    return $valor;
 }
 
 ?>
