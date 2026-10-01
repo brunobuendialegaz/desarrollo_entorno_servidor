@@ -2,8 +2,33 @@
 
 require_once "funciones.php";
 require_once "datos.php";
+// id, nombre o precio
+$orden = leercadena($_GET, "orden");
+
+if ($orden === "") {
+    $orden = "id";
+}
+
+$productosOrdenados = $productos;
+
+if ($orden === "nombre") {
+    usort($productosOrdenados, function (array $a, array $b): int {
+        return $a["nombre"] <=> $b["nombre"];
+    });
+} elseif ($orden === "precio") {
+    usort($productosOrdenados, function (array $a, array $b): int {
+        return $a["precio"] <=> $b["precio"];
+    });
+} else {
+    $orden = "id";
+    usort($productosOrdenados, function (array $a, array $b): int {
+        return $a["id"] <=> $b["id"];
+    });
+} 
 
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -29,18 +54,22 @@ require_once "datos.php";
         </nav>
     </div>
 </header>
-
 <main class="contenedor">
 
     <section class="panel">
         <h2>Catálogo</h2>
-       
+        <p>Orden actual: </p>
+        <nav class="navegacion">
+            <a href="index.php?orden=id">Por ID</a>
+            <a href="index.php?orden=nombre">Por Nombre</a>
+            <a href="index.php?orden=precio">Por Precio</a>
+        </nav>
     </section>
 
     <section class="grid-productos">
 
         <?php 
-            foreach ($productos as $producto){
+            foreach ($productosOrdenados as $producto){
         ?>
         <article class="producto">
             <h2>

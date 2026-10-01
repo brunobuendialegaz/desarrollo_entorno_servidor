@@ -9,6 +9,7 @@
     if ($busqueda !== "") {
         $resultados = buscarProductos($productos, $busqueda);
     }
+
 ?>
 
 
