@@ -1,3 +1,28 @@
+<?php
+
+require_once "funciones.php";
+require_once "datos.php";
+
+$idBruto = $_GET["id"] ?? "";
+
+$id = filter_var($idBruto, FILTER_VALIDATE_INT);
+
+$producto = null;
+$error = "";
+
+if (id === false || id < 1) {
+    http_response_code(400);
+    $error = "El id de producto no es válido";
+} else {
+    $producto = buscarProductoPorID($productos, $id);
+    if ($producto === null) {
+        http_response_code(404);
+        $error = "El id de producto no es válido";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
