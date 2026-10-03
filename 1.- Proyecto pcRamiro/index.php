@@ -88,6 +88,7 @@ if ($orden === "nombre") {
                 estado:
                 <?= obtenerEstadoStock($producto["stock"]); ?>
             </p>
+            <a href="producto.php?id=<?= $producto["id"] ?>" class="boton">Ver producto</a>
 
         </article>
         <?php } ?>
