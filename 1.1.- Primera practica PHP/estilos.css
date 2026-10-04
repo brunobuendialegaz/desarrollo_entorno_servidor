@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin-top: 0;
+}
+
+nav a {
+    color: #2457d6;
+    text-decoration: none;
+}
+
+.libros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.libro {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.libro h3 {
+    margin-top: 0;
+}
+
+.precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.estado {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: #eee;
+}
+
+.disponible {
+    color: green;
+}
+
+.pocas {
+    color: darkorange;
+}
+
+.agotado {
+    color: red;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    background: white;
+}
