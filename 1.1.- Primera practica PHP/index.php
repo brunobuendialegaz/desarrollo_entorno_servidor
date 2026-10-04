@@ -38,8 +38,8 @@
         <?php foreach ($libros as $libro) { ?> 
 
             <article class="libro">
-                <h3><?= $libro["titulo"] ?></h3>
-                <p><?= $libro["autor"] ?></p>
+                <h3><?= escapar($libro["titulo"]) ?></h3>
+                <p><?= escapar($libro["autor"]) ?></p>
                 <p class="precio"><?= formatearPrecio($libro["precio_centimos"]) ?></p>
                 <p>Ejemplares: <?= $libro["ejemplares"] ?></p>
                 <p>
@@ -48,6 +48,7 @@
                         <?= obtenerEstado($libro["ejemplares"]) ?>
                     </span>
                 </p>
+                <a href="libro.php?id=<?= $libro["id"]?>">Ver libro</a>
             </article>   
 
         <?php } ?>

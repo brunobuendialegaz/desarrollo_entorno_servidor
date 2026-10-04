@@ -28,4 +28,17 @@ function obtenerClaseEstado(int $ejemplares): string {
     }
 }
 
+function escapar(string $texto): string {
+    return htmlspecialchars($texto, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+}
+
+function buscarLibroPorId(array $libros, int $id): ?array {
+
+    foreach ($libros as $libro) {
+        if ($libro["id"] === $id) {
+            return $libro;
+        }
+    }
+    return null;
+}
 ?>
