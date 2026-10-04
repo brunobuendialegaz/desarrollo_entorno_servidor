@@ -35,84 +35,16 @@
 
     <section class="libros">
 
+        <?php foreach ($libros as $libro) { ?> 
 
-        <article class="libro">
+            <article class="libro">
+                <h3><?= $libro["titulo"] ?></h3>
+                <p><?= $libro["autor"] ?></p>
+                <p class="precio"><?= formatearPrecio($libro["precio_centimos"]) ?></p>
+                <p>Ejemplares: <?= $libro["ejemplares"] ?></p>
+            </article>   
 
-            <h3>El camino</h3>
-
-            <p>
-                Autor: Miguel Delibes
-            </p>
-
-            <p class="precio">
-                12,90 €
-            </p>
-
-            <p>
-                Ejemplares: 4
-            </p>
-
-            <p>
-                Estado:
-                <span class="estado pocas">
-                    Pocas unidades
-                </span>
-            </p>
-
-        </article>
-
-
-        <article class="libro">
-
-            <h3>Don Quijote de la Mancha</h3>
-
-            <p>
-                Autor: Miguel de Cervantes
-            </p>
-
-            <p class="precio">
-                18,50 €
-            </p>
-
-            <p>
-                Ejemplares: 10
-            </p>
-
-            <p>
-                Estado:
-                <span class="estado disponible">
-                    Disponible
-                </span>
-            </p>
-
-        </article>
-
-
-        <article class="libro">
-
-            <h3>La Celestina</h3>
-
-            <p>
-                Autor: Fernando de Rojas
-            </p>
-
-            <p class="precio">
-                10,95 €
-            </p>
-
-            <p>
-                Ejemplares: 0
-            </p>
-
-            <p>
-                Estado:
-                <span class="estado agotado">
-                    No disponible
-                </span>
-            </p>
-
-        </article>
-
+        <?php } ?>
 
     </section>
 
