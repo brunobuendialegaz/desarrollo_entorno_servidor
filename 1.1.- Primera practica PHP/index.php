@@ -42,6 +42,12 @@
                 <p><?= $libro["autor"] ?></p>
                 <p class="precio"><?= formatearPrecio($libro["precio_centimos"]) ?></p>
                 <p>Ejemplares: <?= $libro["ejemplares"] ?></p>
+                <p>
+                    Estado:
+                    <span class="estado <?= obtenerClaseEstado($libro["ejemplares"]) ?>">
+                        <?= obtenerEstado($libro["ejemplares"]) ?>
+                    </span>
+                </p>
             </article>   
 
         <?php } ?>
