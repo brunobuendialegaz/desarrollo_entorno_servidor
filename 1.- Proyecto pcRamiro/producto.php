@@ -10,7 +10,7 @@ $id = filter_var($idBruto, FILTER_VALIDATE_INT);
 $producto = null;
 $error = "";
 
-if (id === false || id < 1) {
+if ($id === false || $id < 1) {
     http_response_code(400);
     $error = "El id de producto no es válido";
 } else {
@@ -47,30 +47,27 @@ if (id === false || id < 1) {
 </header>
 
 <main class="contenedor">
+    <?php if ($error !== ""): ?>
+
+        <section class="panel">
+            <h2>Error</h2>
+            <p><?= escapar($error) ?></p>
+            <a class="boton" href="index.php">Inicio</a>
+        </section>
+
+    <?php else: ?>
 
     <article class="producto">
-
-        <h2>Teclado mecánico</h2>
-
-        <p>Categoría: Periféricos</p>
-
-        <p class="precio">79,90 €</p>
-
-        <p>Stock: 7</p>
-
-        <p>
-            Estado:
-            <span class="estado disponible">Disponible</span>
+        <h2><?= escapar($producto["nombre"])?></h2>
+        <p>Categoria: <?= escapar($producto["categoria"])?></p>
+        <p class="precio"><?=formatearPrecio($producto["precio"])?></p>
+        <p>Stock: <?=$producto["stock"]?></p>
+        <p class="estado <?=  obtenerClaseEstado($producto["stock"]) ?>">
+                Estado: <?= obtenerEstadoStock($producto["stock"]); ?>
         </p>
-
-        <div class="acciones">
-            <a class="boton" href="compra.php">
-                Comprar
-            </a>
-        </div>
-
     </article>
 
+    <?php endif ?>
 </main>
 
 </body>

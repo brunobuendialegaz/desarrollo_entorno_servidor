@@ -12,7 +12,7 @@
         "stock" => 7],
 
         ["id" => 2,
-        "nombre" => "Raton",
+        "nombre" => "Ratón gaming",
         "categoria" => "perifericos",
         "precio" => 3990,
         "stock" => 3],
