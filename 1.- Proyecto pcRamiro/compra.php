@@ -1,3 +1,35 @@
+<?php 
+
+    require_once "datos.php";
+    require_once "funciones.php";
+
+    $errores = [];
+    $compraRealizada = false;
+    $resultadoComprado = null;
+    $productoSeleccionado = null;
+    $nombre = "";
+    $email = "";
+    $unidades = 1;
+    $productoId = null;
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+ 
+        $nombre = leerCadena($_POST, "nombre");
+        if ($nombre === ""){
+            $errores[] = "Debes introducir un nombre";
+        }
+
+        $emailBruto = leerCadena($_POST, "email");
+        $emailValidado = filter_var($emailBruto, FILTER_VALIDATE_EMAIL);
+        if ($emailValidado === false) {
+            $errores[] = "Correo electrónico con formato incorrecto";
+        } else {
+            $email = $emailValidado;
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,86 +54,51 @@
 
 <main class="contenedor">
 
-    <section class="panel">
+    <form action="compra.php" method="POST" class="formulario">
 
-        <!--
-            Este formulario muestra la parte de cliente.
-            Sin PHP no existe código de servidor que valide,
-            calcule o procese realmente los datos.
-        -->
-        <form class="formulario" action="compra.php" method="POST">
+        <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" value="<?= escapar($nombre)?>">
+        </div>
 
-            <div class="campo">
-                <label for="nombre">Nombre</label>
+        <div class="campo">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="<?= escapar($email)?>">
+        </div>
 
-                <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Tu nombre"
-                >
-            </div>
+        <div class="campo">
+            <label for="producto">Producto</label>
 
-            <div class="campo">
-                <label for="email">Correo electrónico</label>
+            <select name="producto" id="producto">
 
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="nombre@ejemplo.com"
-                >
-            </div>
+                <option value="">Selecciona un producto</option>
 
-            <div class="campo">
-                <label for="producto">Producto</label>
+                <?php foreach ($productos as $producto): ?>
 
-                <select id="producto" name="producto">
+                    <?php $seleccionado = $productoId === $producto["id"]; ?> // para ver que se queda marcado
 
-                    <option value="">
-                        Selecciona un producto
+                    <option value="<?= $producto["id"]?>" 
+
+                    <?= $seleccionado ? "selected" : ""?>>
+                        <?= escapar($producto["nombre"])?> - <?= formatearPrecio($producto["precio"]) ?>
+
                     </option>
 
-                    <option value="1">
-                        Teclado mecánico — 79,90 €
-                    </option>
+                <?php endforeach ?>
 
-                    <option value="2">
-                        Ratón gaming — 39,90 €
-                    </option>
+            </select>
+        </div>
 
-                    <option value="3">
-                        Monitor 27 pulgadas — 219,90 €
-                    </option>
+        <div class="campo">
+            <label for="unidades">Unidades</label>
+            <input type="number" name="unidades" id="unidades" value="<?= escapar($unidades)?>">
+        </div>
 
-                    <option value="4">
-                        Auriculares USB — 49,90 €
-                    </option>
+        <div>
+            <button type="submit">Calcular compra</button>
+        </div>
 
-                </select>
-            </div>
-
-            <div class="campo">
-                <label for="unidades">Unidades</label>
-
-                <input
-                    type="number"
-                    id="unidades"
-                    name="unidades"
-                    min="1"
-                    value="1"
-                >
-            </div>
-
-            <div>
-                <button type="submit">
-                    Enviar formulario
-                </button>
-            </div>
-
-        </form>
-
-    </section>
+    </form>
 
 </main>
 

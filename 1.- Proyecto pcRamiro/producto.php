@@ -17,7 +17,7 @@ if ($id === false || $id < 1) {
     $producto = buscarProductoPorID($productos, $id);
     if ($producto === null) {
         http_response_code(404);
-        $error = "El id de producto no es válido";
+        $error = "El producto solicitado no existe";
     }
 }
 
