@@ -50,7 +50,8 @@
         } 
 
         if ($errores === []) {
-            
+            $resultadoComprado = calcularCompra($productoSeleccionado["precio"], $unidades);
+            $compraRealizada = true;
         }
 
     }
