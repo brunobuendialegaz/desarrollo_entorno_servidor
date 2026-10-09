@@ -32,6 +32,25 @@
             $errores[] = "Debes seleccionar un producto válido";
         } else {
             $productoId = $productoIdValidado;
+            $productoSeleccionado = buscarProductoPorID($productos, $productoId);
+            if ($productoSeleccionado === null) {
+                $errores[] = "El producto seleccionado no existe";
+            }
+        }
+
+        $unidadesValidado = filter_var($_POST["unidades"] ?? "", FILTER_VALIDATE_INT);
+        if ($unidadesValidado === false || $unidadesValidado < 1) {
+            $errores[] = "El numero de unidades debe ser un entero mayor que 1";
+        } else {
+            $unidades = $unidadesValidado;
+        }
+
+        if ($productoSeleccionado !== null && $unidades > $productoSeleccionado["stock"]) {
+            $errores[] = "No hay stock suficiente";
+        } 
+
+        if ($errores === []) {
+            
         }
 
     }
