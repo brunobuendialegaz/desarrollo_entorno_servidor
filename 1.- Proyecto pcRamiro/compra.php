@@ -26,8 +26,17 @@
         } else {
             $email = $emailValidado;
         }
+
+        $productoIdValidado = filter_var($_POST["producto"] ?? "", FILTER_VALIDATE_INT);
+        if ($productoIdValidado === false || $productoIdValidado < 1) {
+            $errores[] = "Debes seleccionar un producto válido";
+        } else {
+            $productoId = $productoIdValidado;
+        }
+
     }
 
+    
 ?>
 
 <!DOCTYPE html>
