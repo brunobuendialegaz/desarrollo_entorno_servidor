@@ -83,7 +83,81 @@
 
 <main class="contenedor">
 
-    <form action="compra.php" method="POST" class="formulario">
+    
+
+    
+
+    <?php if ($compraRealizada === true): ?>
+        <section class="panel">
+
+            <h2>Compra calculada correctamente</h2>
+
+            <table>
+
+                <tr>
+                    <th>Nombre</th>
+                    <td><?= escapar($nombre) ?></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><?= escapar($email) ?></td>
+                </tr>
+                <tr>
+                    <th>Producto</th>
+                    <td><?= escapar($productoSeleccionado["nombre"]) ?></td>
+                </tr>
+                <tr>
+                    <th>Precio unitario</th>
+                    <td><?= formatearPrecio($productoSeleccionado["precio"]) ?></td>
+                </tr>
+                <tr>
+                    <th>Unidades</th>
+                    <td><?= $unidades ?></td>
+                </tr>
+                <tr>
+                    <th>Subtotal</th>
+                    <td><?= formatearPrecio($resultadoComprado["subtotal"]) ?></td>
+                </tr>
+                <?php if ($resultadoComprado["descuento"] > 0): ?>
+                    <tr>
+                        <th>Descuento</th>
+                        <td><?= formatearPrecio($resultadoComprado["descuento"]) ?></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <th>Base</th>
+                    <td><?= formatearPrecio($resultadoComprado["base"]) ?></td>
+                </tr>
+                <tr>
+                    <th>IVA</th>
+                    <td><?= formatearPrecio($resultadoComprado["iva"]) ?></td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td><?= formatearPrecio($resultadoComprado["total"]) ?></td>
+                </tr>
+
+
+            </table>
+            <a href="compra.php" class="boton">Realizar otra compra</a>
+
+        </section>
+    <?php else: ?>
+
+        <?php if ($errores !== []): ?>
+            <section class="errores">
+
+                <h2>Revisa los siguientes errores</h2>
+
+                <ul>
+                    <?php foreach ($errores as $error): ?>
+                        <li><?= escapar($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+
+            </section>
+        <?php endif; ?>
+        <form action="compra.php" method="POST" class="formulario">
 
         <div class="campo">
             <label for="nombre">Nombre</label>
@@ -128,6 +202,7 @@
         </div>
 
     </form>
+    <?php endif; ?> 
 
 </main>
 
