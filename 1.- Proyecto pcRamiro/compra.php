@@ -90,9 +90,9 @@
     <?php if ($compraRealizada === true): ?>
         <section class="panel">
 
-            <h2>Compra calculada correctamente</h2>
+            <h2>Compra realizada con éxito</h2>
 
-            <table>
+            <table class="resumen">
 
                 <tr>
                     <th>Nombre</th>
@@ -139,6 +139,7 @@
 
 
             </table>
+            <br>
             <a href="compra.php" class="boton">Realizar otra compra</a>
 
         </section>
@@ -157,6 +158,7 @@
 
             </section>
         <?php endif; ?>
+        <section class="panel">
         <form action="compra.php" method="POST" class="formulario">
 
         <div class="campo">
@@ -197,11 +199,14 @@
             <input type="number" name="unidades" id="unidades" value="<?= escapar($unidades)?>">
         </div>
 
+        <p>A partir de <strong> <?= UNIDADES_DESCUENTO ?> </strong> unidades se aplica  <strong> <?= DESCUENTO_CANTIDAD * 100 ?>% </strong> de descuento</p>
+
         <div>
             <button type="submit">Calcular compra</button>
         </div>
 
     </form>
+    </section>
     <?php endif; ?> 
 
 </main>
