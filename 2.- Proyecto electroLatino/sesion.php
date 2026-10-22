@@ -1,6 +1,12 @@
 <?php
 /**inspección y regeneración de sesión. */
 require_once __DIR__ . '/includes/config.php';
+
+if (($_SERVER['REQUEST_METHOD'] ?? '' !== 'POST')) {
+    exigirPostValido();
+    session_regenerate_id(true);
+}
+
 cabecera('Inspección de sesión');
 ?>
 <section class="intro"><p class="etiqueta">LABORATORIO</p><h1>¿Cómo funciona una sesión?</h1></section>
