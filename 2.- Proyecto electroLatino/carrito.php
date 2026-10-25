@@ -5,13 +5,20 @@ require_once __DIR__ . '/includes/productos.php';
 cabecera('Tu carrito');
 ?>
 <section class="intro">
-    <p class="etiqueta">EL PROBLEMA DEL ESTADO</p>
+    <p class="etiqueta">ESTADO DEL CARRITO</p>
     <h1>Tu carrito</h1>
     <p>Inicialmente no recordamos productos. Lo solucionaremos con sesiones PHP.</p>
 </section>
-<div class="panel">
-    <p>Tu carrito está vacío.</p>
-    <a class="boton" href="index.php">Ir al catálogo</a>
+
+    <?php if (empty($_SESSION['carrito'])):  ?>
+        <div class="panel">
+            <p>Tu carrito está vacío</p>
+        </div>    
+
+        <a href="index.php" class="boton">Ir al Catálogo</a>
+    <?php else: ?>
+
+    <?php endif; ?>
     
 </div>
 <?php pie(); ?>
