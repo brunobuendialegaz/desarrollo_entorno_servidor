@@ -2,7 +2,7 @@
 /**inspección y regeneración de sesión. */
 require_once __DIR__ . '/includes/config.php';
 
-if (($_SERVER['REQUEST_METHOD'] ?? '' === 'POST')) { // si venimos por post, comprobamos que sea valido
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') { // si venimos por post, comprobamos que sea valido
     exigirPostValido();
     session_regenerate_id(true);
     volver('sesion.php');
@@ -17,8 +17,26 @@ cabecera('Inspección de sesión');
 </section>
 
 <div class="panel">
-    <p><strong>Nombre de la cookie de sesión: </strong> <code class="romper"><?= e(session_name) ?></code></p>
-    <p><strong>ID de sesión: </strong> <code><?= e(session_id) ?></code class="romper"></p>
+    <p><strong>Nombre de la cookie de sesión: </strong> <code class="romper"><?= e(session_name()) ?></code></p>
+
+    <p><strong>ID de sesión: </strong> <code class="romper"><?= e(session_id()) ?></code></p>
+
+    <p><?= e(print_r($_SESSION['carrito'], true)) ?></p>
+
+    <p>Unidades: <?= unidadesCarrito() ?></p>
     
+    <form method="post">
+
+        <?= campoCsrf() ?> 
+        <button type="submit">
+            Regenerar identificador de sesión
+        </button>
+    </form>
+
+    <form action="cerrar.php" method="post" class="separado">
+        <button type="submit">
+            Cerrar sesión y borrar carrito
+        </button>
+    </form>
 </div>
 <?php pie(); ?>
