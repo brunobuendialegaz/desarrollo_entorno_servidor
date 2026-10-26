@@ -19,7 +19,12 @@ function unidadesCarrito(): int {
 
 // Esta función se completará cuando el carrito ya exista.
 function totalCarrito(array $productos): float {
-    return 0.0;
+    $total = 0;
+    foreach($_SESSION['carrito'] as $id => $cantidad) {
+        $producto = $productos[$id];
+        $total += ($producto['precio'] * $cantidad);
+    }
+    return $total;
 }
 
 // Comprueba que el formulario se ha enviado por POST.
